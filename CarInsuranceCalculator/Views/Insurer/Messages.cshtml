@@ -1,0 +1,66 @@
+﻿
+@model CarInsuranceCalculator.Observer.Logger
+<h2>Message Log</h2>
+@if (User.IsInRole("Insurer"))
+{
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Message
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.UpdateMessages)
+        {
+            <tr>
+                <td>
+                    @{
+                        List<ApplicationUser> users = ViewBag.Users;
+                        foreach (var user in users)
+                        {
+
+                            if (item.ToLower().Contains($"{user.UserName.ToLower()}"))
+                            {
+                                @Html.DisplayFor(modelItem => item)
+                                return;
+                            }
+                        }
+
+                    }
+                </td>
+            </tr>
+        }
+        }
+    </tbody>
+</table>
+}
+ else if (User.IsInRole("Admin"))
+{
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Message
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.UpdateMessages)
+        {
+            <tr>
+                <td>
+                    @{                       
+
+                        @Html.DisplayFor(modelItem => item)
+                       
+
+                    }
+                </td>
+            </tr>
+        }
+        }
+    </tbody>
+</table>
+}

@@ -1,0 +1,90 @@
+﻿@using CarInsuranceCalculator.Data.Models
+@model IEnumerable<CarInsuranceCalculator.Data.Models.Offer>
+
+@{
+    ViewData["Title"] = "Calculate";
+}
+
+<h2>List of offers</h2>
+
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>
+            Insurance company
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Premium)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Insurer.ApplicationUser.Email)
+        </th>
+        <th>
+            Phone number
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        var currIndex = 0;
+    }
+    @foreach (var item in Model.OrderBy(i => i.Premium))
+    {
+
+        @if (currIndex == 0)
+         {
+             <tr class="table-success"><td>
+                     @{
+                         List<Insurer> insurers = ViewBag.Insurers;
+                         var insurer = insurers.FirstOrDefault(i => i.Id == item.InsurerId);
+                         item.Insurer = insurer;
+                         List<ApplicationUser> users = ViewBag.Users;
+                         var user = users.FirstOrDefault(u => u.Id == insurer.ApplicationUserId);
+                     }
+                     @Html.DisplayFor(modelItem => item.Insurer.Name)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Premium)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => user.Email)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => user.PhoneNumber)
+                 </td></tr>
+         }
+         else
+         {
+             <tr>
+                 <td>
+                     @{
+                         List<Insurer> insurers = ViewBag.Insurers;
+                         var insurer = insurers.FirstOrDefault(i => i.Id == item.InsurerId);
+                         item.Insurer = insurer;
+                         List<ApplicationUser> users = ViewBag.Users;
+                         var user = users.FirstOrDefault(u => u.Id == insurer.ApplicationUserId);
+                     }
+                     @Html.DisplayFor(modelItem => item.Insurer.Name)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => item.Premium)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => user.Email)
+                 </td>
+                 <td>
+                     @Html.DisplayFor(modelItem => user.PhoneNumber)
+                 </td>
+             </tr>
+         }
+        
+        currIndex++;
+    }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index">Back to Homepage</a>
+</div>

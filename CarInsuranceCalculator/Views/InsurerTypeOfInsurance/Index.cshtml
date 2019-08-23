@@ -1,0 +1,113 @@
+﻿@using CarInsuranceCalculator.Data.Models
+@using CarInsuranceCalculator.Models.Models
+@using PagedList.Mvc
+@model PagedList.IPagedList<InsurerTypeOfInsurance>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@if (User.IsInRole("Insurer"))
+{
+    <h2>List of types of insurances for this insurer</h2>
+}
+else
+{
+    <h2>List of types of insurances for all insurers</h2>
+}
+@{
+    if (User.IsInRole("Insurer"))
+    {
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                   <th>
+                       Type Of Insurance
+                    </th>
+                   <th>
+                       Tariff Number Change
+                   </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+
+                    if (item.InsurerId == ViewBag.CurrentUser)
+                    {
+                        <tr>
+                            <td>
+                                @{
+                                    List<TypeOfInsurance> tyeOfInsuranceList = ViewBag.TypeOfInsuranceList;
+                                    var typeOfInsurance = tyeOfInsuranceList.FirstOrDefault(toi => toi.Id == item.TypeOfInsuranceId);
+                                    item.TypeOfInsurance = typeOfInsurance;
+                                }
+                                @Html.DisplayFor(modelItem => item.TypeOfInsurance.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TariffNumber)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { insurerId = item.InsurerId, typeOfInsuranceId = item.TypeOfInsuranceId }) |
+                                @Html.ActionLink("Delete", "Delete", new { insurerId = item.InsurerId, typeOfInsuranceId = item.TypeOfInsuranceId })
+                            </td>
+                        </tr>
+                    }
+                }
+
+
+            </tbody>
+        </table>
+    }
+    else if (User.IsInRole("Admin"))
+    {
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Insurer
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            @{
+                List<Insurer> insurers = ViewBag.Insurers;
+            }
+            <tbody>
+                @foreach (var item in insurers)
+                {
+
+
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+
+                        </td>
+                        <td>
+                            @Html.ActionLink("Details", "Details", new { insurerId = item.Id })
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    }
+
+}
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-page="@(Model.PageNumber - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-page="@(Model.PageNumber + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

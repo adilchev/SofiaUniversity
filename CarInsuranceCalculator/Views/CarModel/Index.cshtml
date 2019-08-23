@@ -1,0 +1,100 @@
+﻿@using CarInsuranceCalculator.Data.Models
+@using PagedList.Mvc
+
+@model PagedList.IPagedList<CarInsuranceCalculator.Data.Models.CarModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List of car models</h2>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Make
+            </th>
+            <th>
+                Model Name
+            </th>
+            <th>
+                Engine Capacity
+            </th>
+            <th>
+                Horsepower
+            </th>
+            <th>
+                Special Model
+            </th>
+            <th>
+                Production Year
+            </th>
+            <th>
+                Price
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @{
+                        List<CarMake> carMakesList = ViewBag.MakesList;
+                        var carMake = carMakesList.FirstOrDefault(cm => cm.Id == item.CarMakeId);
+                        item.CarMake = carMake;
+                    }
+                    @Html.DisplayFor(modelItem => item.CarMake.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EngineCapacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Horsepower)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecialModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductionYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-page="@(Model.PageNumber - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-page="@(Model.PageNumber + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

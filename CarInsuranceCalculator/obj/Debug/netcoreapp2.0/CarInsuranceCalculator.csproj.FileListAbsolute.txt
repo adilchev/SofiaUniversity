@@ -1,0 +1,24 @@
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.deps.json
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.runtimeconfig.json
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.runtimeconfig.dev.json
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.dll
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.pdb
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.csprojResolveAssemblyReference.cache
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.AssemblyInfoInputs.cache
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.AssemblyInfo.cs
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.dll
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.pdb
+C:\Users\User\source\repos\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.csproj.CoreCompileInputs.cache
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.AssemblyInfoInputs.cache
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.AssemblyInfo.cs
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.dll
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.pdb
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.deps.json
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.runtimeconfig.json
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.runtimeconfig.dev.json
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.dll
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\bin\Debug\netcoreapp2.0\CarInsuranceCalculator.pdb
+d:\Users\User\Desktop\New folder\CarInsuranceCalculator\CarInsuranceCalculator\obj\Debug\netcoreapp2.0\CarInsuranceCalculator.csprojAssemblyReference.cache

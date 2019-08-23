@@ -1,0 +1,67 @@
+﻿@using CarInsuranceCalculator.Data.Models
+@using CarInsuranceCalculator.Models.Models
+@model PagedList.IPagedList<CarInsuranceCalculator.Models.Models.InsurerRiskOrBonus>
+
+@{
+    ViewData["Title"] = "Details";
+}
+@{
+    Insurer insurers = ViewBag.Insurers;
+
+}
+<h2>Details for  @Html.DisplayFor(modelItem => insurers.Name)</h2>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Risk/Bonus
+            </th>
+            <th>
+                TariffNumberChange
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            List<InsurerRiskOrBonus> currentRisks = ViewBag.InsurerWithRisksAndBonuses;
+
+        }
+        @foreach (var item in currentRisks)
+        {
+            <tr>
+                <td>
+                    @{
+                        List<RiskOrBonus> risksOrBonuses = ViewBag.Risks;
+                        var riskOrBonus = risksOrBonuses.FirstOrDefault(rob => rob.Id == item.RiskOrBonusId);
+                        item.RiskOrBonus = riskOrBonus;
+                    }
+                    @Html.DisplayFor(modelItem => item.RiskOrBonus.Nomenclature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TariffNumberChange)
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-page="@(Model.PageNumber - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-page="@(Model.PageNumber + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

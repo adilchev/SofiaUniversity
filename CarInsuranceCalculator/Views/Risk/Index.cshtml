@@ -1,0 +1,65 @@
+﻿@using PagedList.Mvc
+@using CarInsuranceCalculator.Models.Models
+@model PagedList.IPagedList<CarInsuranceCalculator.Data.Models.RiskOrBonus>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>List of Risks/Bonuses</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                Nomenclature
+            </th>
+            <th>
+                Category
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nomenclature)
+                </td>
+                <td>
+                    @{
+                        List<Category> categories = ViewBag.CategoryList;
+                        var category = categories.FirstOrDefault(c => c.Id == item.CategoryId);
+                        item.Category = category;
+                    }
+                    @Html.DisplayFor(modelItem => item.Category.Name)
+                </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>|
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+        </tr>
+    }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<a asp-action="Index"
+   asp-route-page="@(Model.PageNumber - 1)"
+   class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-page="@(Model.PageNumber + 1)"
+   class="btn btn-default @nextDisabled">
+    Next
+</a>

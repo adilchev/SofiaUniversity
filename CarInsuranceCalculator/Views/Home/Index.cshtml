@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using CarInsuranceCalculator.Data.Models
+@model InfoForInsurance
+
+
+<h4>Fill the information below:</h4>
+<hr />
+<form asp-action="Calculate">
+    <div class="row">
+        <div class="col-md-6">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TypeOfInsuranceId" class="control-label">Type of insurance</label>
+                <select asp-for="TypeOfInsuranceId" class="form-control" asp-items=@(new SelectList(ViewBag.TypesOfInsurance,"Id","Name"))></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarMakeId" class="control-label">Car make</label>
+                <select asp-for="CarMakeId" class="form-control" asp-items=@(new SelectList(ViewBag.CarMakes,"Id","Name"))></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarModelId" class="control-label">Car Model</label>
+                <select asp-for="CarModelId" class="form-control" asp-items=@(new SelectList(string.Empty,"Id","Name"))></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegionId" class="control-label">Registration</label>
+                <select asp-for="RegionId" class="form-control" asp-items=@(new SelectList(ViewBag.Regions,"Id","Abbreviation"))></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarInsurerId" class="control-label">Where does the vehicle have car insurance?</label>
+                <select asp-for="CarInsurerId" class="form-control" asp-items=@(new SelectList(ViewBag.Insurers,"Id","Name"))></select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="NewImport" /> New Import
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label asp-for="CarAge" class="control-label">Age of vehicle</label>
+                <input asp-for="CarAge" class="form-control" />
+                <span asp-validation-for="CarAge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OwnerAge" class="control-label">Owner Age</label>
+                <input asp-for="OwnerAge" class="form-control" />
+                <span asp-validation-for="OwnerAge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MTPLInsurerId" class="control-label">Where does the vehicle have MTPL?</label>
+                <select asp-for="MTPLInsurerId" class="form-control" asp-items=@(new SelectList(ViewBag.Insurers,"Id","Name"))></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value" class="control-label"></label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberOfPayments" class="control-label">Number of payments</label>
+                <select asp-for="NumberOfPayments" class="form-control" asp-items=@(new SelectList(ViewBag.NumberOfPayments))>></select>
+                <span asp-validation-for="NumberOfPayments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="RightSideWheel" /> Right-side wheel
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Calculate" class="btn btn-info" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script src="lib/jquery/dist/jquery.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var items = "<option value='0'>Select...</option>";
+        $("#CarModelId").html(items);
+    })
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#CarMakeId').change(function () {
+
+            var ddlsource = "#CarMakeId";
+            $.getJSON('/Home/GetCarModel',
+                { CarMakeId: $(ddlsource).val() },
+                function (data) {
+                    var items = '';
+                    $("#CarModelId").empty();
+                    $.each(data,
+                        function (i, carModel) {
+                            items += "<option value='" + carModel.value + "'>" + carModel.text + "</option>";
+                        });
+                    $('#CarModelId').html(items);
+                });
+        });
+    });
+</script>
